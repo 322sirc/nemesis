@@ -1,2 +1,2 @@
 # nemesis
-config
+configuration files
