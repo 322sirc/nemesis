@@ -13,12 +13,15 @@ if grep -q "XeroLinux" /etc/os-release; then
   #if [ -f /etc/skel/.bashrc ]; then
   #  sudo rm /etc/skel/.bashrc
   #fi  
-  sudo pacman -R --noconfirm amd-ucode
-  sudo pacman -R --noconfirm cryptsetup
-  sudo pacman -R --noconfirm btrfs-progs
-  sudo pacman -Rs --noconfirm dmraid
+  sudo pacman -Rs --noconfirm printer-support
   sudo pacman -Rs --noconfirm hplip
   sudo pacman -Rs --noconfirm piper
+  sudo pacman -R --noconfirm game-devices-udev
+  sudo pacman -Rs --noconfirm kdenetwork-filesharing
+  sudo pacman -Rs --noconfirm gvfs-smb
+  sudo pacman -Rs --noconfirm kitty-terminfo
+  #sudo pacman -R --noconfirm btrfs-progs
+  #sudo pacman -Rs --noconfirm dmraid
 
   echo
   tput setaf 2

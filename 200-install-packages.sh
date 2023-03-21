@@ -9,10 +9,12 @@ echo
 sudo pacman -S --noconfirm --needed nemo-git
 sudo pacman -S --noconfirm --needed nemo-compare
 sudo pacman -S --noconfirm --needed nemo-fileroller
+sudo pacman -S --noconfirm --needed gnome-terminal-transparency
+sudo pacman -S --noconfirm --needed gnome-terminal-transparency-debug
 sudo pacman -S --noconfirm --needed sublime-text-4
 sudo pacman -S --noconfirm --needed kitty-git
 sudo pacman -S --noconfirm --needed gnome-logs
-sudo pacman -S --noconfirm --needed minstick-git
+sudo pacman -S --noconfirm --needed mintstick-git
 sudo pacman -S --noconfirm --needed oh-my-posh-bin
 sudo pacman -S --noconfirm --needed fastfetch-git
 sudo pacman -S --noconfirm --needed onevpl

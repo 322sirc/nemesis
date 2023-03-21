@@ -8,7 +8,7 @@ echo
 sudo pacman -S --noconfirm --needed jq	
 sudo pacman -S --noconfirm --needed lm_sensors
 sudo pacman -S --noconfirm --needed conky-lua-archers-git
-sudo pacman -S --noconfirm --needed nerd-fonts-hack
+#sudo pacman -S --noconfirm --needed nerd-fonts-hack
 sudo pacman -S --noconfirm --needed Arc-Froly-Dark-gtk-theme
 sudo pacman -S --noconfirm --needed fluent-round-icon-theme-git
 sudo pacman -S --noconfirm --needed sunset-mine-kde
