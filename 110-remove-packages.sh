@@ -20,6 +20,7 @@ if grep -q "XeroLinux" /etc/os-release; then
   sudo pacman -Rs --noconfirm kdenetwork-filesharing
   sudo pacman -Rs --noconfirm gvfs-smb
   sudo pacman -Rs --noconfirm kitty-terminfo
+  sudo pacman -Rs --noconfirm iio-sensor-proxy
   #sudo pacman -R --noconfirm btrfs-progs
   #sudo pacman -Rs --noconfirm dmraid
 

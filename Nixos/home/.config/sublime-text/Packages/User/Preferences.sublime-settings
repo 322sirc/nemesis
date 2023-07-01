@@ -1,0 +1,8 @@
+{
+	"color_scheme": "Catppuccin Frappe.sublime-color-scheme",
+	"theme": "Adaptive.sublime-theme",
+	"ignored_packages":
+	[
+		"Vintage",
+	],
+}
