@@ -1,2 +1,2 @@
 #!/bin/sh
-tilix -e subl ~/.config/hypr/cheatsheet.md
+subl $HOME/.config/hypr/configs/keybinds.conf

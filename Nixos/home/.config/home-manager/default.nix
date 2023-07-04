@@ -7,7 +7,7 @@
 # manage files in ~
 {
   imports = [
-    ./wlogout.nix
+    ./config/wlogout.nix
     ./config/waybar-conf.nix
   ];
 

@@ -1,4 +1,8 @@
 #!/bin/bash
 #swww img /usr/share/backgrounds/wallpapers-1/1.jpg
 #swaybg -i /home/cris/Pictures/a11.jpg
-swaybg -m fill -i ~/Pics/1.jpg
+#swaybg -m fill -i ~/Pics/1.jpg
+
+rm -rf $HOME/.cache/swww &
+sleep 5;
+swww query || swww init && swww img /home/cris/Pics/1.jpg;

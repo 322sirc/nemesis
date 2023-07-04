@@ -6,7 +6,7 @@
 
 
  {
- #GTK theming
+ 
   home.pointerCursor = {
     name = "Catppuccin-Frappe-Maroon-Cursors";
     package = pkgs.catppuccin-cursors.frappeMaroon;
@@ -14,11 +14,17 @@
      
     };
 
-
+#GTK theming
    gtk = {
     enable = true;
     font = {
       name = "Helvetica Neue LT Std 35 Thin 12";
+    };
+    
+    cursorTheme = {
+      name = "Catppuccin-Frappe-Maroon-Cursors";
+      package = pkgs.catppuccin-cursors.frappeMaroon;
+      size = 24;
     };
 
     iconTheme = {
@@ -40,6 +46,20 @@
     };
   };
 
+   gtk.gtk3.extraConfig = {
+    gtk-xft-antialias = 1;
+    gtk-xft-hinting = 1;
+    gtk-xft-hintstyle = "hintmedium";
+        
+      };
+
+   gtk.gtk4.extraConfig = {
+    gtk-enable-animations = true;
+    gtk-primary-button-warps-slider=false;
+        
+      };
+    
+  
 #Qt theming
 home.packages = with pkgs; [
     libsForQt5.qtstyleplugin-kvantum

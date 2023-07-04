@@ -3,6 +3,7 @@
 # and in the NixOS manual (accessible by running `nixos-help`).
 
 { config, pkgs, libs, ... }: 
+
 { 
   programs.hyprland.enable = true;
   
@@ -23,7 +24,7 @@ nix.extraOptions = ''
   fonts.fonts = with pkgs; [
 
       helvetica-neue-lt-std      
-      (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" "FiraCode" "JetBrainsMono" "Lekton"  ]; })
+      (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" "FiraCode" "JetBrainsMono" "Lekton" "Meslo"  ]; })
     ];
     
  
@@ -74,15 +75,24 @@ services.xserver = {
         enable = true;
         xkbVariant = "";
       };
-services.xserver.displayManager = {
-          sddm.enable = true;
-       };  
+services.xserver.displayManager.sddm.enable = true;
+services.xserver.displayManager.sddm.theme = "elarun";
+    
+
+
+
+services.xserver.displayManager = {        
+           autoLogin.enable = true;
+           autoLogin.user = "cris"; 
+       };
+
 services = {
        udisks2.enable = true;
        gvfs.enable = true;
        devmon.enable = true;
        thermald.enable = true;
        };
+
   # Configure keymap in X11
    services.xserver.layout = "us";
   # services.xserver.xkbOptions = "eurosign:e,caps:escape";
@@ -122,16 +132,21 @@ services = {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+
+
+  
   environment.systemPackages = with pkgs; [
     accountsservice
     alacritty
     brightnessctl
-     cava
+    cava
     cinnamon.nemo-fileroller
     cinnamon.nemo-with-extensions
+    cinnamon.nemo-python
     cliphist
     clipmenu
     cmake
+    dmenu
     dmenu-wayland
     egl-wayland
     fontconfig
@@ -171,7 +186,6 @@ services = {
     sublime4
     swaybg
     swaylock-effects
-    swaylock
     swww
     thermald
     tilix
@@ -186,8 +200,8 @@ services = {
     wlroots
     xdg-desktop-portal-hyprland
     xdg-utils
-    xorg.xorgproto
-  ];
+
+    ];
    
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

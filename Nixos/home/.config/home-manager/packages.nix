@@ -7,6 +7,7 @@
   home.packages = with pkgs;[
     
     btop
+    discord
     htop
     firefox-wayland
     tree
@@ -16,6 +17,7 @@
     notify-desktop
     pamixer
     pavucontrol
+    swayimg
     tuner
     zip
     unzip
