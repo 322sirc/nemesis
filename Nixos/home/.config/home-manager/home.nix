@@ -7,7 +7,6 @@
     ./config/waybar-conf.nix
     ./config/wlogout.nix
     ./packages.nix
-    #./default.nix
     ./hyprland-upd.nix
     
     
@@ -45,6 +44,15 @@
   #  source = /$HOME/.config/alacritty/alacritty.yml;
   #};
 
+home.file = {
+  "waybar" = {
+   source = /home/cris/.config/hypr/waybar;
+   recursive = true;
+   };
+   
+   
+};   
+programs.waybar.enable = true;
   # You can also manage environment variables but you will have to manually
   # source
   #
@@ -58,7 +66,7 @@
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
-
+#services.xserver.displayManager.sddm.theme = "catppuccin-frappe";
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 

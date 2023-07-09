@@ -13,6 +13,7 @@
     tree
     catppuccin-kvantum
     gnome.gnome-logs
+    inkscape
     libnotify
     notify-desktop
     pamixer

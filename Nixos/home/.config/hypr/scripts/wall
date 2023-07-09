@@ -1,7 +1,9 @@
 #!/bin/bash
-#swww img /usr/share/backgrounds/wallpapers-1/1.jpg
+
 #swaybg -i /home/cris/Pictures/a11.jpg
-swaybg -m fit -i $HOME/Pics/NixOS.jpg
+#swaybg -m fit -i /home/cris/Pics/macchiato.jpg;
+
+exec-once = swaybg -o \* -i /home/cris/Pics/macchiato.jpg -m fill &
 
 #rm -rf $HOME/.cache/swww &
 #sleep 5;

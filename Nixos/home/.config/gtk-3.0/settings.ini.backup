@@ -1,6 +1,6 @@
 [Settings]
-gtk-font-name=Helvetica Neue LT Std weight=250 13
-gtk-icon-theme-name=Fluent-red-dark
+gtk-font-name=Helvetica Neue LT Std Light 14
+gtk-icon-theme-name=Fluent-red
 gtk-theme-name=Catppuccin-Frappe-Standard-Maroon-Dark
 gtk-cursor-theme-name=Catppuccin-Frappe-Maroon-Cursors
 gtk-cursor-theme-size=0
