@@ -1,20 +1,29 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
+{ config, pkgs, libs, ...}: 
 
-{ config, pkgs, libs, ... }: 
+let
+ tokyo-night-sddm = pkgs.callPackage ./pkgs-mine/tokyo-night-sddm.nix {  };
+ catppuccin-sddm = pkgs.callPackage ./pkgs-mine/catppuccin-sddm.nix { };
+in
+  
 
-{ 
-  programs.hyprland.enable = true;
+ {
+
+   programs.hyprland.enable = true;
   
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
                 "openssl-1.1.1u"
               ];
+  #nixpkgs.config.allowBroken = true
 
 nix.extraOptions = ''
     experimental-features = nix-command
     '';
+
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -25,7 +34,8 @@ nix.extraOptions = ''
 
       helvetica-neue-lt-std      
       (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" "FiraCode" "JetBrainsMono" "Lekton" "Meslo"  ]; })
-    ];
+
+          ];
     
  
   # Use the systemd-boot EFI boot loader.
@@ -75,9 +85,12 @@ services.xserver = {
         enable = true;
         xkbVariant = "";
       };
+
+#Display manager sddm
+      
 services.xserver.displayManager.sddm.enable = true;
-services.xserver.displayManager.sddm.theme = "elarun";
-    
+#services.xserver.displayManager.sddm.theme = "tokyo-night-sddm";
+services.xserver.displayManager.sddm.theme = "catppuccin-frappe";    
 
 
 
@@ -107,7 +120,6 @@ services = {
    # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -139,6 +151,7 @@ services = {
     accountsservice
     alacritty
     brightnessctl
+    
     cava
     cinnamon.nemo-fileroller
     cinnamon.nemo-with-extensions
@@ -168,6 +181,7 @@ services = {
     polkit-kde-agent
     libsForQt5.qt5ct
     libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.qt5.qtgraphicaleffects
     lxappearance
     mako
     meld
@@ -201,8 +215,12 @@ services = {
     xdg-desktop-portal-hyprland
     xdg-utils
 
+    tokyo-night-sddm
+    catppuccin-sddm
+
     ];
-   
+
+       
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -215,9 +233,11 @@ services = {
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-  security.sudo.wheelNeedsPassword = false;
-  security.polkit.enable = true;
+  security = {
+    sudo.wheelNeedsPassword = false;
+    polkit.enable = true;
+    rtkit.enable = true;
+  };
   
   systemd = {
     user.services.polkit-kde-authentication-agent-1= {
