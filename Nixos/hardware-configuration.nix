@@ -8,14 +8,17 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_stable;
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "uas" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+  
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "uas" "usb_storage" "sd_mod" "sdhci_pci" "xfs" ];
+
   boot.initrd.kernelModules = [ "i915" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.extraModprobeConfig = ''
   options snd-sof-intel-hda-common hda_model=alc287-yoga9-bass-spk-pin
 '';
+  boot.kernelParams = [ "mitigations=off" "nowatchdog" "ipv6.disable_ipv6=1" "ibt=off" "psi=1" ];
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/d34010d6-6471-40a5-b5d2-5cb04b8a1261";

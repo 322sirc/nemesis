@@ -6,6 +6,7 @@
 let
  tokyo-night-sddm = pkgs.callPackage ./pkgs-mine/tokyo-night-sddm.nix {  };
  catppuccin-sddm = pkgs.callPackage ./pkgs-mine/catppuccin-sddm.nix { };
+ nemo-compare = pkgs.callPackage ./pkgs-mine/nemo-compare.nix { };
 in
   
 
@@ -31,7 +32,8 @@ nix.extraOptions = ''
 
   fonts.fontDir.enable = true;
   fonts.fonts = with pkgs; [
-
+  
+      font-awesome
       helvetica-neue-lt-std      
       (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" "FiraCode" "JetBrainsMono" "Lekton" "Meslo"  ]; })
 
@@ -137,7 +139,7 @@ services = {
 # Define a user account. Don't forget to set a password with ‘passwd’.
    users.users.cris = {
      isNormalUser = true;
-     extraGroups = [ "wheel" "networkmanager" "input" "rfkill" "disk" "kvm" ]; 
+     extraGroups = [ "wheel" "networkmanager" "input" "rfkill" "disk" "kvm" "audio" "video" "camera"]; 
      packages = with pkgs; [
          ];
    };
@@ -156,6 +158,7 @@ services = {
     cinnamon.nemo-fileroller
     cinnamon.nemo-with-extensions
     cinnamon.nemo-python
+    #nemo-compare
     cliphist
     clipmenu
     cmake
@@ -191,6 +194,7 @@ services = {
     neofetch
     networkmanager
     networkmanagerapplet
+    pulseaudio
     qt5.qtwayland
     qt6.qtwayland
     ripgrep
@@ -238,7 +242,12 @@ services = {
     polkit.enable = true;
     rtkit.enable = true;
   };
-  
+
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  }; 
   systemd = {
     user.services.polkit-kde-authentication-agent-1= {
       description = "polkit-kde-authentication-agent-1";
@@ -263,7 +272,7 @@ services = {
     enable = true;
     extraPortals = [
     pkgs.xdg-desktop-portal-hyprland
-    ];
+       ];
   };
 
   # Open ports in the firewall.
