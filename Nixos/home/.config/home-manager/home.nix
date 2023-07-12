@@ -1,4 +1,4 @@
-{ config, pkgs, libs, ... }:
+{ config, pkgs, libs, system, hyprland, ... }:
 
 {
     imports = [
@@ -70,18 +70,16 @@ programs.waybar.enable = true;
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-programs.waybar.package = pkgs.waybar.overrideAttrs (oa: {
-    mesonFlags = (oa.mesonFlags or  []) ++ [ "-Dexperimental=true" ];
-    patches = (oa.patches or []) ++ [
-      (pkgs.fetchpatch {
-        name = "fix waybar hyprctl";
-        url = "https://aur.archlinux.org/cgit/aur.git/plain/hyprctl.patch?h=waybar-hyprland-git";
-        sha256 = "sha256-pY3+9Dhi61Jo2cPnBdmn3NUTSA8bAbtgsk2ooj4y7aQ=";
-      })
-    ];
-  });
-  
-
+nixpkgs.overlays = [                                      # Waybar needs to be compiled with the experimental flag for wlr/workspaces to work (for now done with hyprland.nix)
+    (self: super: {
+       waybar = super.waybar.overrideAttrs (oldAttrs: {
+         mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+         patchPhase = ''
+           substituteInPlace src/modules/wlr/workspace_manager.cpp --replace "zext_workspace_handle_v1_activate(workspace_handle_);" "const std::string command = \"hyprctl dispatch workspace \" + name_; system(command.c_str());"
+         '';
+       });
+     })
+   ];
  
     
 
