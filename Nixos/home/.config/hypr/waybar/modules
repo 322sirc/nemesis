@@ -125,8 +125,8 @@
 },
 
 "hyprland/window": {
-  "format": "{}",
-  "max-length": 360,
+  "format": "<span style='normal'>{}</span>",
+  "max-length": 200,
   "separate-outputs": true,
 },
 
@@ -263,6 +263,7 @@
         "wofi"  
                  ],
 },
+
   
 "custom/cycle_wall":{
   "format":" ",

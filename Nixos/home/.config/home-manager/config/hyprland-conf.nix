@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  hyprlandConfigPath = "${config.home.homeDirectory}/.config/hypr/hyprland.conf";
+  hyprlandConfigPath = "${config.home.homeDirectory}/.config/hypr/hyprland.conf.back";
   hyprlandConfig = builtins.readFile hyprlandConfigPath;
 in
 {
@@ -8,6 +8,11 @@ in
     ${hyprlandConfig}
     exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     exec-once = systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-    exec-once=/nix/store/hg62hq7ycqaw25sxzyd2ib4i27q9xhhq-polkit-kde-agent-1-5.27.6/libexec/polkit-kde-authentication-agent-1
+
+    env = QT_QPA_PLATFORMTHEME,qt5ct  #necessary to run qt5ct properly
+    env = QT_QPA_PLATFORM,wayland;xcb
+    env = GTK_THEME,Catppuccin-Frappe-Standard-Maroon-Dark
+    env = GDK_DPI_SCALE,1.2
+    env = XCURSOR_SIZE,24
   '';
 }
