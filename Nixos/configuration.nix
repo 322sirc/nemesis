@@ -6,7 +6,7 @@
 let
  tokyo-night-sddm = pkgs.callPackage ./pkgs-mine/tokyo-night-sddm.nix {  };
  catppuccin-sddm = pkgs.callPackage ./pkgs-mine/catppuccin-sddm.nix { };
- nemo-compare = pkgs.callPackage ./pkgs-mine/nemo-compare.nix { };
+ font-helveticanow = pkgs.callPackage ./pkgs-mine/font-helveticanow.nix { };
 in
   
 
@@ -34,9 +34,9 @@ nix.extraOptions = ''
   fonts.fonts = with pkgs; [
   
       font-awesome
-      helvetica-neue-lt-std      
+      font-helveticanow    
       (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" "FiraCode" "JetBrainsMono" "Lekton" "Meslo"  ]; })
-
+      
           ];
     
  
@@ -194,7 +194,6 @@ services = {
     neofetch
     networkmanager
     networkmanagerapplet
-    pulseaudio
     qt5.qtwayland
     qt6.qtwayland
     ripgrep

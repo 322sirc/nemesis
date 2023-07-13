@@ -18,7 +18,7 @@
    gtk = {
     enable = true;
     font = {
-      name = "Helvetica Neue LT Std 35 Thin 12";
+      name = "Helvetica Now Display SemiLight 11";
     };
     
     cursorTheme = {
