@@ -8,6 +8,8 @@ in
     ${hyprlandConfig}
     exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     exec-once = systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+    # This ensures all user units started after the command (not those already running) set the variables
+exec systemctl --user import-environment
 
     env = QT_QPA_PLATFORMTHEME,qt5ct  #necessary to run qt5ct properly
     env = QT_QPA_PLATFORM,wayland;xcb

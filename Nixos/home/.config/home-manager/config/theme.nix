@@ -10,6 +10,8 @@
   home.pointerCursor = {
     name = "Catppuccin-Frappe-Maroon-Cursors";
     package = pkgs.catppuccin-cursors.frappeMaroon;
+    gtk.enable = true;
+    x11.enable = true;
     size = 24;    
      
     };
@@ -45,11 +47,18 @@
       };
     };
   };
+  gtk.gtk2.extraConfig = ''
+      gtk-xft-antialias=1
+      gtk-xft-hinting=1
+      gtk-xft-hintstyle="hintslight"
+      gtk-xft-rgba="rgb"
+    '';
 
    gtk.gtk3.extraConfig = {
     gtk-xft-antialias = 1;
     gtk-xft-hinting = 1;
-    gtk-xft-hintstyle = "hintmedium";
+    gtk-xft-hintstyle = "hintslight";
+    gtk-xft-rgba = "rgb";
         
       };
 
@@ -61,6 +70,9 @@
     
   
 #Qt theming
+qt.platformTheme = "kde";
+qt.style.name = "kvantum";
+
 home.packages = with pkgs; [
     libsForQt5.qtstyleplugin-kvantum
     (catppuccin-kvantum.override {
@@ -68,12 +80,15 @@ home.packages = with pkgs; [
       variant = "Frappe";
     })
   ];
-  #home.sessionVariables = lib.mkForce {
-   # QT_STYLE_OVERRIDE = "Catppuccin-Frappe-Maroon";
-  #};
 
-  #xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
-  #  General.Theme = "Catppuccin-Frappe-Maroon";
-  #}; 
+  home.sessionVariables =  {
+   XCURSOR_SIZE = "24";
+   QT_STYLE_OVERRIDE = "kvantum";
+  };
+
+  xdg.configFile."Kvantum/kvantum.kvconfig".text = ''
+    [General]
+    theme=Catppuccin-Frappe-Maroon
+  '';
 
 }

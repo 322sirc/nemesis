@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "uas" "usb_storage" "sd_mod" "sdhci_pci" "xfs" ];
 
@@ -58,9 +58,12 @@
   };
 
   environment.variables = {
+    DISABLE_QT5_COMPAT = "0";
     QT_QPA_PLATFORMTHEME = "qt5ct";
     QT_QPA_PLATFORM = "xcb";  
     VDPAU_DRIVER = lib.mkIf config.hardware.opengl.enable (lib.mkDefault "va_gl");
+    WLR_BACKEND = "vulkan";
+    WLR_RENDERER = "vulkan";
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

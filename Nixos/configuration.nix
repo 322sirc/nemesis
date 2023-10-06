@@ -7,6 +7,7 @@ let
  tokyo-night-sddm = pkgs.callPackage ./pkgs-mine/tokyo-night-sddm.nix {  };
  catppuccin-sddm = pkgs.callPackage ./pkgs-mine/catppuccin-sddm.nix { };
  font-helveticanow = pkgs.callPackage ./pkgs-mine/font-helveticanow.nix { };
+ nemo-compare = pkgs.callPackage ./pkgs-mine/nemo-compare.nix { inherit pkgs; };
 in
   
 
@@ -16,7 +17,7 @@ in
   
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
-                "openssl-1.1.1u"
+                "openssl-1.1.1w"
               ];
   #nixpkgs.config.allowBroken = true
 
@@ -31,7 +32,7 @@ nix.extraOptions = ''
     ]; 
 
   fonts.fontDir.enable = true;
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
   
       font-awesome
       font-helveticanow    
@@ -40,7 +41,9 @@ nix.extraOptions = ''
           ];
     
  
-  # Use the systemd-boot EFI boot loader.
+  # Use the systemd-boot EFI boot loader
+
+  boot.tmp.cleanOnBoot = true;
   boot.loader.grub.forceInstall = false; # RISKY!
 
   boot.loader.grub.enable                = true;
@@ -135,33 +138,38 @@ services = {
    services.xserver.libinput.enable = true;
 
 
+#Flatpak enable
+services.flatpak.enable = true;
+
 
 # Define a user account. Don't forget to set a password with ‘passwd’.
    users.users.cris = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "networkmanager" "input" "rfkill" "disk" "kvm" "audio" "video" "camera"]; 
-     packages = with pkgs; [
+        isNormalUser = true;
+        extraGroups = [ "wheel" "networkmanager" "input" "rfkill" "disk" "kvm" "audio" "video" "camera" "power" "systemd-journal" ];
+        packages = with pkgs; [
          ];
    };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
-
   
   environment.systemPackages = with pkgs; [
+    nano # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    
     accountsservice
     alacritty
     brightnessctl
-    
+    cairo
     cava
-    cinnamon.nemo-fileroller
     cinnamon.nemo-with-extensions
+    cinnamon.nemo-fileroller
     cinnamon.nemo-python
     #nemo-compare
     cliphist
     clipmenu
     cmake
+    coreutils
     dmenu
     dmenu-wayland
     egl-wayland
@@ -170,37 +178,45 @@ services = {
     freetype
     gcc
     git
+    glibc
     gnome.gnome-keyring
     gnome.dconf-editor
     gnumake
     gtk3
+    gtk-engine-murrine
+    gtk_engines
     hyprland
     hyprland-protocols
     ifwifi
     jq
     killall
-    kitty
     libdecor
+    pkg-config
     polkit-kde-agent
-    libsForQt5.qt5ct
+    qt5ct
+    qt5.qtwayland
+    qt6.qtwayland
+    libsForQt5.polkit-qt
+    libsForQt5.polkit-kde-agent
+    libsForQt5.qt5.qtwayland
     libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
+    lld
     lxappearance
     mako
     meld
     meson
     mpv
-    nano # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     neofetch
     networkmanager
     networkmanagerapplet
-    qt5.qtwayland
-    qt6.qtwayland
+    nix-index
     ripgrep
     rofi-wayland
     silver-searcher
     slurp
-    sublime4
+    stdenv.cc
     swaybg
     swaylock-effects
     swww
@@ -213,13 +229,18 @@ services = {
     wget
     wofi
     xmlto
+    wayland-protocols
     wlogout
     wlroots
+    xdg-desktop-portal
     xdg-desktop-portal-hyprland
     xdg-utils
+    xxHash
+    ydotool
 
     tokyo-night-sddm
     catppuccin-sddm
+    #nemo-compare
 
     ];
 
@@ -270,7 +291,8 @@ services = {
   xdg.portal = {
     enable = true;
     extraPortals = [
-    pkgs.xdg-desktop-portal-hyprland
+    pkgs.xdg-desktop-portal-hyprland 
+    #pkgs.xdg-desktop-portal-gtk
        ];
   };
 

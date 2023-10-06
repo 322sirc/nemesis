@@ -10,6 +10,7 @@ alias rebuild-hm="home-manager switch"
 alias upgrade-os="sudo nixos-rebuild switch --upgrade"
 
 #Nix-env user update
+
 alias update-os="nix-env -u '*'"
 
 #Channels list, update, remove
@@ -46,15 +47,15 @@ delete_store() {
   nix-store --query --referrers "$store" | xargs nix-store --delete
 }
 
+alias optimise="sudo nix-store --optimise"
 
 
 
-
-
+alias install="nix-env -i"
 
 
 alias shut="sudo shutdown -P 0"
-alias reboot="reboot now"
+alias reboot="sudo reboot now"
 
 alias rebash="source ~/.bashrc"
 

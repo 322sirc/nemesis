@@ -2,16 +2,20 @@
 
 {
     imports = [
+    ./config/foot.nix
     ./config/theme.nix
     ./config/hyprland-conf.nix
-    ./config/waybar-conf.nix
+    #./config/waybar-conf.nix
     ./config/wlogout.nix
     ./packages.nix
     ./hyprland-upd.nix
+    #./pkgs/spectrum-icons.nix
     
     
     
     ];
+   
+ 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "cris";
@@ -21,7 +25,12 @@
     SDL_VIDEODRIVER = "wayland";
     XDG_SESSION_TYPE = "wayland";
     SUBLIME_TEXT_USE_POLKIT = "1";
+    #if your cursor become invisible
+    WLR_NO_HARDWARE_CURSORS = "1";
+    #hint electron apps to use wayland
+    NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND=1;
+    
   };
   
   # This value determines the Home Manager release that your configuration is
@@ -53,6 +62,7 @@ home.file = {
    
 };   
 programs.waybar.enable = true;
+
   # You can also manage environment variables but you will have to manually
   # source
   #
@@ -66,6 +76,7 @@ programs.waybar.enable = true;
   home.sessionVariables = {
     # EDITOR = "emacs";
   };
+  
 #services.xserver.displayManager.sddm.theme = "catppuccin-frappe";
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -78,9 +89,13 @@ nixpkgs.overlays = [                                      # Waybar needs to be c
            substituteInPlace src/modules/wlr/workspace_manager.cpp --replace "zext_workspace_handle_v1_activate(workspace_handle_);" "const std::string command = \"hyprctl dispatch workspace \" + name_; system(command.c_str());"
          '';
        });
-     })
-   ];
- 
     
+       
+     })
 
-}
+
+   ];
+
+   
+ 
+ }
