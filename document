@@ -1,0 +1,23 @@
+
+
+#eclipse module
+wget http://www.mirrorservice.org/sites/download.eclipse.org/eclipseMirror/technology/epp/downloads/release/2024-09/R/eclipse-java-2024-09-R-linux-gtk-x86_64.tar.gz
+tar -xvzf eclipse*.tar.gz
+cd eclipse
+./eclipse
+
+#postgresql server module
+sudo apt install -y postgresql-common postgresql-contrib
+sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+Enter
+
+sudo -u postgres psql --command '\password postgres'
+Enter new password for user "postgres": 
+Enter it again:
+
+
+#dberaver module
+
+https://dbeaver.io/files/24.2.4/dbeaver-ce_24.2.4_amd64.deb
+sudo dpkg -i dbeaver-*.deb
+dbeaver
