@@ -18,7 +18,7 @@ else
 
 echo '
 [repo]
-SigLevel = Optional TrustedOnly
+SigLevel = Never
 Server = https://322sirc.github.io/$repo/$arch' | sudo tee --append /etc/pacman.conf
 
 sudo pacman -Sy
