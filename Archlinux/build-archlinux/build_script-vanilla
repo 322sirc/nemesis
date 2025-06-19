@@ -1,0 +1,41 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Install archiso if not installed
+if ! pacman -Qq archiso &>/dev/null; then
+    echo "Installing archiso..."
+    sudo pacman -S --needed archiso
+fi
+
+# Clone archinstall if not already present
+if [[ ! -d archinstall ]]; then
+    git clone https://github.com/archlinux/archinstall
+fi
+
+cd archinstall || { echo "Failed to enter archinstall directory."; exit 1; }
+chmod +x build_iso.sh
+
+# Build ISO
+echo "Building ISO..."
+sudo ./build_iso.sh
+
+# Wait for ISO file to be created
+echo "Waiting for ISO to appear..."
+while [[ -z $(find /tmp/archlive/out/ -maxdepth 1 -type f -name "archlinux-*-x86_64.iso") ]]; do
+    sleep 2
+done
+
+# Get the ISO file path
+ISO_FILE=$(find /tmp/archlive/out/ -maxdepth 1 -type f -name "archlinux-*-x86_64.iso" | head -n1)
+
+# Copy ISO to storage
+DEST_DIR="/mnt/storage/ISO"
+echo "Copying ISO to $DEST_DIR..."
+cp "$ISO_FILE" "$DEST_DIR/"
+
+# Clean up
+echo "Cleaning up temporary files..."
+sudo rm -rf /tmp/archlive/
+
+echo "Done. ISO copied to $DEST_DIR"

@@ -1,0 +1,58 @@
+#!/bin/bash
+
+set -euo pipefail
+
+DEST_DIR="/mnt/storage/ISO/build-archlinux"
+CUSTOM_DATA_SRC="/mnt/storage/Git/nemesis/MyScripts"
+ARCHINSTALL_DIR="$(pwd)/archinstall"
+
+# Ensure archiso is installed
+if ! pacman -Qq archiso &>/dev/null; then
+    echo "Installing archiso..."
+    sudo pacman -S --needed archiso
+fi
+
+# Clone archinstall repo if needed
+if [[ ! -d archinstall ]]; then
+    git clone https://github.com/archlinux/archinstall
+fi
+
+cd archinstall || { echo "Failed to enter archinstall directory."; exit 1; }
+
+chmod +x build_iso.sh
+
+# Inject custom files into the ISO
+echo "Injecting custom scripts into ISO..."
+mkdir -p airootfs/root/Data
+cp -r "$CUSTOM_DATA_SRC"/* airootfs/root/Data/
+sudo chown -R root:root airootfs/root/Data
+sudo chmod -R 777 airootfs/root/Data
+
+
+# Optional: Auto-run a script on login (uncomment if needed)
+# echo "/root/Data/startup.sh" >> airootfs/root/.bashrc
+
+# Build the ISO
+echo "Building ISO..."
+sudo ./build_iso.sh
+
+# Wait for ISO file to appear
+echo "Waiting for ISO to appear..."
+while [[ -z $(find /tmp/archlive/out/ -maxdepth 1 -type f -name "archlinux-*-x86_64.iso") ]]; do
+    sleep 2
+done
+
+# Find ISO file
+ISO_FILE=$(find /tmp/archlive/out/ -maxdepth 1 -type f -name "archlinux-*-x86_64.iso" | head -n1)
+
+# Copy ISO to destination
+echo "Copying ISO to $DEST_DIR..."
+cp "$ISO_FILE" "$DEST_DIR/"
+
+# Clean up
+echo "Cleaning up build output..."
+cd ..
+sudo rm -rf "$ARCHINSTALL_DIR"
+sudo rm -rf /tmp/archlive/
+
+echo "✅ Build complete. ISO copied to $DEST_DIR"

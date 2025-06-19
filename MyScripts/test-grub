@@ -1,0 +1,10 @@
+#!/bin/bash
+# Configure GRUB
+if [ -d "/boot/grub" ]; then
+    echo "GRUB detected. Proceeding with theme installation and configuration..."
+    sudo sed -i 's/#\s*GRUB_DISABLE_OS_PROBER=false/GRUB_DISABLE_OS_PROBER=false/' /etc/default/grub
+    sudo ./grub.sh
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+else
+    echo "GRUB not detected. Skipping customize grub."
+fi
