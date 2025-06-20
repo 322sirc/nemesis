@@ -1,0 +1,6 @@
+
+GTK_THEME=catppuccin-frappe-rosewater-standard+default
+#QT_QPA_PLATFORMTHEME=qt6ct
+QT_STYLE_OVERRIDE=kvantum
+BROWSER=firefox
+EDITOR=nano
