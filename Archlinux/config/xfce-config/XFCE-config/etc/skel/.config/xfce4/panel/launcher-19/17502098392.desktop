@@ -1,0 +1,39 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=env MOZ_USE_XINPUT2=1 /usr/lib/firefox/firefox %u
+Terminal=false
+X-MultipleArgs=false
+Icon=firefox
+StartupWMClass=firefox
+DBusActivatable=false
+Categories=GNOME;GTK;Network;WebBrowser;
+MimeType=application/json;application/pdf;application/rdf+xml;application/rss+xml;application/x-xpinstall;application/xhtml+xml;application/xml;audio/flac;audio/ogg;audio/webm;image/avif;image/gif;image/jpeg;image/png;image/svg+xml;image/webp;text/html;text/xml;video/ogg;video/webm;x-scheme-handler/chrome;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;
+StartupNotify=true
+Actions=new-window;new-private-window;open-profile-manager;
+Name=Firefox
+Name[en_CA]=Firefox
+Comment=Browse the World Wide Web
+Comment[en_CA]=Browse the World Wide Web
+GenericName=Web Browser
+GenericName[en_CA]=Web Browser
+Keywords=Internet;WWW;Browser;Web;Explorer;
+Keywords[en_CA]=Internet;WWW;Browser;Web;Explorer;
+X-GNOME-FullName=Firefox Web Browser
+X-GNOME-FullName[en_CA]=Firefox Web Browser
+X-XFCE-Source=file:///usr/share/applications/firefox.desktop
+
+[Desktop Action new-window]
+Exec=env MOZ_USE_XINPUT2=1 /usr/lib/firefox/firefox --new-window %u
+Name=New Window
+Name[en_CA]=New Window
+
+[Desktop Action new-private-window]
+Exec=env MOZ_USE_XINPUT2=1 /usr/lib/firefox/firefox --private-window %u
+Name=New Private Window
+Name[en_CA]=New Private Window
+
+[Desktop Action open-profile-manager]
+Exec=env MOZ_USE_XINPUT2=1 /usr/lib/firefox/firefox --ProfileManager
+Name=Open Profile Manager
+Name[en_CA]=Open Profile Manager

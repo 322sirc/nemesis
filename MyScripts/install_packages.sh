@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+# Packages list name -based on the desktop
+LIST_NAME="XFCE-packages.x86_64-categ"
 # Base directory of this script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -32,43 +34,56 @@ elif grep -q "GenuineIntel" /proc/cpuinfo; then
 fi
 
 # Install remaining packages from the list
-PKG_LIST="$SCRIPT_DIR/packages.x86_64"
 
+PKG_LIST="$SCRIPT_DIR/$LIST_NAME"
+
+# Check if file exists
 if [[ ! -f "$PKG_LIST" ]]; then
-    echo "❌ Error: packages.x86_64 not found!"
+    echo "❌ Error: $LIST_NAME not found in $SCRIPT_DIR!"
     exit 1
 fi
 
-echo "[*] Installing packages from packages.x86_64..."
-SKIP_PKGS=("linux" "linux-headers" "linux-firmware" "mkinitcpio" "intel-ucode" "amd-ucode")
+echo "[*] Installing packages from $LIST_NAME..."
+SKIP_PKGS=("linux" "linux-headers" "linux-firmware-intel" "mkinitcpio" "intel-ucode")
 
+# Read and install packages
 while IFS= read -r package; do
+    # Skip empty lines and comments
     [[ -z "$package" || "$package" == \#* ]] && continue
+
+    # Skip certain packages
     if [[ " ${SKIP_PKGS[*]} " =~ " ${package} " ]]; then
+        echo "⏭️ Skipping: $package"
         continue
     fi
-    echo "Installing: $package"
+
+    echo "📦 Installing: $package"
     sudo pacman -S --noconfirm --needed "$package" || echo "⚠️ Failed to install $package"
 done < "$PKG_LIST"
+
+# Copy custom skel contents to user home
+USER_NAME="cris"
+USER_HOME="/home/$USER_NAME"
+
+echo "[*] Applying /etc/skel to $USER_HOME..."
+
+if id "$USER_NAME" &>/dev/null; then
+    if [[ -d "$USER_HOME" ]]; then
+        sudo cp -a /etc/skel/. "$USER_HOME/"
+        sudo chown -R "$USER_NAME:$USER_NAME" "$USER_HOME"
+        echo "✅ Custom skel applied to $USER_NAME"
+    else
+        echo "⚠️ User $USER_NAME exists but $USER_HOME does not. Skipping skel copy."
+    fi
+else
+    echo "❌ User $USER_NAME does not exist! Skipping skel copy."
+fi
+
 
 # Enable essential services
 echo "[*] Enabling essential services..."
 sudo systemctl enable sddm power-profiles-daemon bluetooth NetworkManager
 
-# Install SDDM session config
-# Ensure the SDDM config directory exists
-if [[ ! -d /etc/sddm.conf.d ]]; then
-    echo "[*] Creating /etc/sddm.conf.d directory..."
-    sudo mkdir -p /etc/sddm.conf.d
-fi
-
-# Then, if the Xfce.session file exists in the script dir, copy it
-if [[ -f "$SCRIPT_DIR/Xfce.session" ]]; then
-    echo "[*] Installing SDDM session file..."
-    sudo cp "$SCRIPT_DIR/Xfce.session" /etc/sddm.conf.d/
-else
-    echo "⚠️  Xfce.session file not found in $SCRIPT_DIR"
-fi
 
 # Configure GRUB
 if [ -d "/boot/grub" ]; then
@@ -94,8 +109,8 @@ if [[ "$virt" != "none" ]]; then
 fi
 
 # Regenerate initramfs
-echo "[*] Regenerating initramfs..."
-sudo mkinitcpio -P
+#echo "[*] Regenerating initramfs..."
+#sudo mkinitcpio -P
 
 # Done
 echo

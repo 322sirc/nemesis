@@ -1,5 +1,4 @@
 alacritty
-alci-calamares
 alsa-firmware
 alsa-plugins
 alsa-utils
@@ -18,7 +17,6 @@ bind
 blueberry
 bluez-alsa-git
 bluez-utils
-breeze-grub
 broadcom-wl-dkms
 catppuccin-cursors-frappe
 catppuccin-gtk-theme-frappe
@@ -95,12 +93,18 @@ libvdpau-va-gl
 libvpl
 libwacom-surface
 linux
-linux-atm
-linux-firmware
-linux-firmware-bnx2x
-linux-firmware-marvell
-linux-firmware-qlogic
 linux-headers
+linux-firmware-broadcom
+linux-firmware-intel
+linux-firmware-liquidio
+linux-firmware-marvell
+linux-firmware-mellanox
+linux-firmware-nfp
+linux-firmware-nvidia
+linux-firmware-other
+linux-firmware-qlogic
+linux-firmware-realtek
+linux-firmware-whence
 livecd-sounds
 logrotate
 lsscsi
@@ -116,7 +120,6 @@ mintstick-git
 mkinitcpio-archiso
 mkinitcpio-firmware
 mkinitcpio-nfs-utils
-modemmanager
 most
 mtpfs
 mtools
@@ -266,6 +269,7 @@ xfce4-wavelan-plugin
 xfce4-weather-plugin
 xfce4-whiskermenu-plugin
 xfce4-xkb-plugin
+xfce-config
 xfconf
 xfdesktop
 xfwm4-themes
