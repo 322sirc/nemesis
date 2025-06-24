@@ -88,7 +88,6 @@ zsh
 
 ###archiso-extra
 dialog
-dnsutils
 logrotate
 ntp
 wget
@@ -117,7 +116,7 @@ xterm
 bash-completion
 os-prober
 dex
-mkinitcpio-firmware
+#mkinitcpio-firmware
 xorg-xkill
 xterm
 htop
@@ -196,7 +195,6 @@ vulkan-mesa-layers
 vulkan-tools
 libvpl
 vpl-gpu-rt
-onevpl-cpu-git
 
 meson
 
@@ -313,10 +311,8 @@ gnome-logs
 gnome-screenshot
 gnome-disk-utility
 gparted
-hardinfo-gtk3
 parallel
 ripgrep
-systemd-manager
 ptyxis
 tilix
 
@@ -339,7 +335,7 @@ ttf-droid
 ttf-hack
 ttf-inconsolata
 ttf-liberation
-ttf-ms-fonts
+
 
 
 #themes
@@ -384,8 +380,7 @@ pacman-hooks
 pacman-mirrorup
 rate-mirrors-bin
 sublime-text-4
-spotify-adblock
+spotify-adblock-git
 stacer-git
 surface-control-bin
-the_platinum_searcher-bin
 thecalculator

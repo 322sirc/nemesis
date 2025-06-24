@@ -20,12 +20,11 @@ cp -r /usr/share/archiso/configs/releng/* "$BUILD_DIR"
 
 cd "$BUILD_DIR"
 
-# Inject custom scripts into the ISO
 echo "Injecting custom scripts into ISO..."
-mkdir -p airootfs/root/Data
-cp -r "$CUSTOM_DATA_SRC"/* airootfs/root/Data/
-sudo chown -R root:root airootfs/root/Data
-sudo chmod -R 777 airootfs/root/Data
+mkdir airootfs/root/Data
+rsync -a "$CUSTOM_DATA_SRC"/ airootfs/root/Data/
+chmod -R 777 airootfs/root/Data
+
 
 # Inject cow_spacesize=10G into EFI boot entry
 echo "Modifying EFI boot entry to add cow_spacesize=10G..."
