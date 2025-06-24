@@ -1,7 +1,7 @@
 pkgname=xfce-config
 pkgbase=XFCE-config
 pkgver=25.06
-pkgrel=1
+pkgrel=2
 pkgdesc="XFCE configuration for custom Arch install ISO"
 arch=('any')
 license=('custom')
@@ -17,12 +17,10 @@ package() {
     install -d \
         "${pkgdir}/etc/sddm.conf.d" \
         "${pkgdir}/etc/skel" \
-        "${pkgdir}/etc/X11/xorg.conf.d" \
         "${pkgdir}/usr/local/bin"
 
     # Use -a (archive) for all: handles folders + files + metadata
     cp -a "${dest}/etc/sddm.conf.d/." "${pkgdir}/etc/sddm.conf.d/"
     cp -a "${dest}/etc/skel/."         "${pkgdir}/etc/skel/"
-    cp -a "${dest}/etc/X11/xorg.conf.d/." "${pkgdir}/etc/X11/xorg.conf.d/"
     cp -a "${dest}/usr/local/bin/."    "${pkgdir}/usr/local/bin/"
 }
