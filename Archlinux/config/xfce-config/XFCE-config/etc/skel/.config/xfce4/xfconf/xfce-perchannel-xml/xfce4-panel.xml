@@ -51,6 +51,7 @@
         <value type="int" value="18"/>
         <value type="int" value="19"/>
         <value type="int" value="30"/>
+        <value type="int" value="32"/>
         <value type="int" value="31"/>
         <value type="int" value="20"/>
         <value type="int" value="21"/>
@@ -209,5 +210,10 @@
       </property>
     </property>
     <property name="plugin-7" type="string" value="xfce4-clipman-plugin"/>
+    <property name="plugin-32" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17508069521.desktop"/>
+      </property>
+    </property>
   </property>
 </channel>

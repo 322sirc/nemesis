@@ -197,6 +197,11 @@
           <property name="last-image" type="string" value="/usr/share/backgrounds/xfce/xfce-teal.svg"/>
         </property>
       </property>
+      <property name="monitorVGA-1" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="last-image" type="string" value="/usr/share/backgrounds/wallpapers-personal/101.jpg"/>
+        </property>
+      </property>
     </property>
   </property>
   <property name="last" type="empty">

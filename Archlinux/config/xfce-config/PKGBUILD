@@ -1,26 +1,29 @@
 pkgname=xfce-config
 pkgbase=XFCE-config
 pkgver=25.06
-pkgrel=4
+pkgrel=6
 pkgdesc="XFCE configuration for custom Arch install ISO"
 arch=('any')
 license=('custom')
 conflicts=('plasma-config' 'hyprland-config')
 provides=("${pkgname}")
 source=("${pkgbase}.tar.gz")
-sha256sums=('7f3684179241d5d429336d0af75e2bca946ccf6035fa23ec38a2773f48a69870')
+sha256sums=('4617bd89434bdda3af89e9dc579c350d0e92d45d74ad5c35a42134618f8d911d')
 
 package() {
     local dest="${srcdir}/${pkgbase}"
 
     # Create target directories
     install -d \
+        "${pkgdir}/etc/modprobe.d" \
         "${pkgdir}/etc/sddm.conf.d" \
         "${pkgdir}/etc/skel" \
         "${pkgdir}/usr/local/bin"
 
     # Use -a (archive) for all: handles folders + files + metadata
-    cp -a "${dest}/etc/sddm.conf.d/." "${pkgdir}/etc/sddm.conf.d/"
+    cp -a "${dest}/etc/modprobe.d/."    "${pkgdir}/etc/modprobe.d"
+    cp -a "${dest}/etc/sddm.conf.d/."  "${pkgdir}/etc/sddm.conf.d/"
     cp -a "${dest}/etc/skel/."         "${pkgdir}/etc/skel/"
     cp -a "${dest}/usr/local/bin/."    "${pkgdir}/usr/local/bin/"
+    cp "${dest}/etc/environment_profile"   "${pkgdir}/etc/"
 }

@@ -4,6 +4,16 @@
 configs:
 - level: 0
   monitors:
+  - id: "12c52f65c079cab6dffe1f631b0c83a7d77683b9"
+    display_name: "PNP(VBX) VBOX monitor 0x03E10754 (VGA-1)"
+    geometry:
+      x: 0
+      y: 0
+      width: 1872
+      height: 993
+  icons: {}
+- level: 0
+  monitors:
   - id: "d7cee22f8ef2d897b5aff0ff5fd6e95d6ac22799"
     display_name: "Sharp Corporation LQ100P1JX51 (eDP-1)"
     geometry:
