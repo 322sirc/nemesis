@@ -70,8 +70,8 @@ echo "[*] Applying /etc/skel to $USER_HOME..."
 if id "$USER_NAME" &>/dev/null; then
     if [[ -d "$USER_HOME" ]]; then
         sudo cp -a /etc/skel/. "$USER_HOME/"
-        rm "$USER_HOME/.bashrc"
-        mv "$USER_HOME/.bashrc_profile" "$USER_HOME/.bashrc"
+        sudo rm "$USER_HOME/.bashrc"
+        sudo mv "$USER_HOME/.bashrc_profile" "$USER_HOME/.bashrc"
         sudo chown -R "$USER_NAME:$USER_NAME" "$USER_HOME"
         echo "✅ Custom skel applied to $USER_NAME"
     else
