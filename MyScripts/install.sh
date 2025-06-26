@@ -112,9 +112,40 @@ if [[ "$virt" != "none" ]]; then
     sudo pacman -S --noconfirm --needed virtualbox-guest-utils
 fi
 
-# Regenerate initramfs
-#echo "[*] Regenerating initramfs..."
-#sudo mkinitcpio -P
+
+# Define the list of desired groups
+EXTRA_GROUPS="wheel audio video storage network input lp optical sys log rfkill"
+
+# Detect the first non-system user (UID >= 1000)
+NEW_USER=$(awk -F: '$3 >= 1000 && $3 < 65534 { print $1; exit }' /etc/passwd)
+
+# Check if we found a user
+if [[ -z "$NEW_USER" ]]; then
+    echo "❌ No user with UID >= 1000 found."
+    exit 1
+fi
+
+echo "👤 Detected user: $NEW_USER"
+echo "🔍 Ensuring groups exist..."
+
+# Ensure each group exists, or create it if not
+for grp in $EXTRA_GROUPS; do
+    if getent group "$grp" > /dev/null; then
+        echo "✅ Group '$grp' already exists."
+    else
+        echo "➕ Creating group '$grp'..."
+        sudo groupadd "$grp"
+    fi
+done
+
+echo "👥 Adding user '$NEW_USER' to groups..."
+sudo usermod -aG $EXTRA_GROUPS "$NEW_USER"
+
+echo "✅ Done. User '$NEW_USER' is now in the following groups:"
+id "$NEW_USER"
+
+
+
 
 # Done
 echo

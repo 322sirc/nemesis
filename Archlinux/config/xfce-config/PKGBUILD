@@ -1,7 +1,7 @@
 pkgname=xfce-config
 pkgbase=XFCE-config
 pkgver=25.06
-pkgrel=6
+pkgrel=7
 pkgdesc="XFCE configuration for custom Arch install ISO"
 arch=('any')
 license=('custom')
@@ -26,4 +26,12 @@ package() {
     cp -a "${dest}/etc/skel/."         "${pkgdir}/etc/skel/"
     cp -a "${dest}/usr/local/bin/."    "${pkgdir}/usr/local/bin/"
     cp "${dest}/etc/environment_profile"   "${pkgdir}/etc/"
+
+     # 🛠️ Fix permissions: 755 for dirs, 644 for files (unless executable)
+    echo "[*] Fixing permissions..."
+    find "${pkgdir}/etc/skel" -type d -exec chmod 755 {} +
+    find "${pkgdir}/etc/skel" -type f -exec chmod 644 {} +
+
+    # Make scripts in /usr/local/bin executable
+    find "${pkgdir}/usr/local/bin" -type f -exec chmod 755 {} +
 }
