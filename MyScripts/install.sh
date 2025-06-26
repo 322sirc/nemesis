@@ -73,6 +73,9 @@ if id "$USER_NAME" &>/dev/null; then
         sudo cp -a /etc/skel/. "/root/"
         sudo rm "$USER_HOME/.bashrc"
         sudo mv "$USER_HOME/.bashrc_profile" "$USER_HOME/.bashrc"
+        sudo rm /root/.bashrc
+        sudo mv /root/.bashrc_profile /root/.bashrc
+        sudo rm /etc/environment
         sudo mv /etc/environment_profile /etc/environment
         sudo chown -R "$USER_NAME:$USER_NAME" "$USER_HOME"
         echo "✅ Custom skel applied to $USER_NAME"

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+PKG="xfce-config-*.pkg.tar.zst"
+TMPDIR=$(mktemp -d)
+
+echo "[*] Extracting $PKG to $TMPDIR..."
+tar -xf $PKG -C "$TMPDIR"
+
+echo "[*] Searching for items with 700 permissions in /etc/skel..."
+find "$TMPDIR/etc/skel" -perm 700 -exec ls -ld {} \;
+
+# Optional: clean up
+# read -p "Delete temp directory? [Y/n] " answer
+# [[ "$answer" =~ ^[Yy]$ || -z "$answer" ]] && rm -rf "$TMPDIR"
+
