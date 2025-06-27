@@ -1,7 +1,8 @@
 #!/bin/bash
 
+# Kernel parameters to apply in GRUB_CMDLINE_LINUX_DEFAULT
+KERNEL_PARAMS='loglevel=7 acpi_osi=! acpi_osi='\''Windows 2020'\'' rd.udev.log_priority=3 vt.global_cursor_default=0 mitigations=off nowatchdog nvme_load=yes ipv6.disable_ipv6=1 ibt=off psi=1'
 # Grub2 Theme
-
 ROOT_UID=0
 THEME_DIR="/usr/share/grub/themes"
 THEME_NAME=garuda-mod
@@ -62,6 +63,9 @@ if [ "$UID" -eq "$ROOT_UID" ]; then
 
   # Backup grub config
   cp -an /etc/default/grub /etc/default/grub.bak
+
+ sed -i "s|^GRUB_CMDLINE_LINUX_DEFAULT=.*|GRUB_CMDLINE_LINUX_DEFAULT=\"$KERNEL_PARAMS\"|" /etc/default/grub
+
 
   grep "GRUB_THEME=" /etc/default/grub 2>&1 >/dev/null && sed -i '/GRUB_THEME=/d' /etc/default/grub
 

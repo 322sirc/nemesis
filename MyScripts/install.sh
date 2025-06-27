@@ -2,6 +2,11 @@
 
 set -euo pipefail
 
+# Log all output (stdout and stderr) to a file
+LOGFILE="/var/log/custom_install.log"
+exec > >(tee -a "$LOGFILE") 2>&1
+
+
 # Packages list name -based on the desktop
 LIST_NAME="XFCE-packages.x86_64-categ"
 # Base directory of this script
@@ -117,40 +122,50 @@ fi
 
 
 # Define the list of desired groups
-EXTRA_GROUPS="wheel audio video storage network input lp optical sys log rfkill"
+#EXTRA_GROUPS="wheel audio video storage network input lp optical sys log rfkill"
 
 # Detect the first non-system user (UID >= 1000)
-NEW_USER=$(awk -F: '$3 >= 1000 && $3 < 65534 { print $1; exit }' /etc/passwd)
+#NEW_USER=$(awk -F: '$3 >= 1000 && $3 < 65534 { print $1; exit }' /etc/passwd)
 
-# Check if we found a user
-if [[ -z "$NEW_USER" ]]; then
-    echo "❌ No user with UID >= 1000 found."
-    exit 1
-fi
-
-echo "👤 Detected user: $NEW_USER"
-echo "🔍 Ensuring groups exist..."
-
-# Ensure each group exists, or create it if not
-for grp in $EXTRA_GROUPS; do
-    if getent group "$grp" > /dev/null; then
-        echo "✅ Group '$grp' already exists."
-    else
-        echo "➕ Creating group '$grp'..."
-        sudo groupadd "$grp"
-    fi
-done
-
-echo "👥 Adding user '$NEW_USER' to groups..."
-sudo usermod -aG $EXTRA_GROUPS "$NEW_USER"
-
-echo "✅ Done. User '$NEW_USER' is now in the following groups:"
-id "$NEW_USER"
-
-
-
+## Check if we found a user
+#if [[ -z "$NEW_USER" ]]; then
+#    echo "❌ No user with UID >= 1000 found."
+#    exit 1
+#fi
+#
+#echo "👤 Detected user: $NEW_USER"
+#echo "🔍 Ensuring groups exist..."
+#
+## Create any missing groups
+#for grp in $EXTRA_GROUPS; do
+#    if getent group "$grp" > /dev/null; then
+#        echo "✅ Group '$grp' already exists."
+#    else
+#        echo "➕ Creating group '$grp'..."
+#        sudo groupadd "$grp"
+#    fi
+#done
+#
+#echo "👥 Adding user '$NEW_USER' to groups..."
+#sudo usermod -aG "$(echo "$EXTRA_GROUPS" | tr ' ' ,)" "$NEW_USER"
+#
+#echo "✅ Done. User '$NEW_USER' is now in the following groups:"
+#id "$NEW_USER"
+#
 
 # Done
 echo
 echo "✅ Installation and configuration complete!"
 echo "💡 You can now reboot into your fully configured Arch Linux system."
+
+echo
+echo "📋 Extracting error messages from log..."
+grep -iE "error|failed|not found|cannot" "$LOGFILE" > /var/log/custom_install_errors.log || true
+
+if [[ -s /var/log/custom_install_errors.log ]]; then
+    echo "⚠️  Detected possible issues. Review /var/log/custom_install_errors.log:"
+    cat /var/log/custom_install_errors.log
+else
+    echo "✅ No significant errors found in log."
+fi
+

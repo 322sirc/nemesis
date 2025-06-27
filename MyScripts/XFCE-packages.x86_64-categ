@@ -36,7 +36,6 @@ linux-firmware-liquidio
 linux-firmware-marvell
 linux-firmware-mellanox
 linux-firmware-nfp
-linux-firmware-nvidia
 linux-firmware-other
 linux-firmware-qlogic
 linux-firmware-realtek
@@ -82,6 +81,7 @@ vala
 vim
 wireless-regdb
 wireless_tools
+xfsprogs
 xdg-desktop-portal-gtk
 xl2tpd
 zsh
@@ -315,7 +315,7 @@ gparted
 parallel
 ripgrep
 ptyxis
-tilix
+#tilix
 
 vlc
 
@@ -369,7 +369,6 @@ flameshot-git
 gestures
 gnome-terminal-transparency
 intel-compute-runtime-bin
-iw-git
 kitty-git
 libwacom-surface
 nemo-git

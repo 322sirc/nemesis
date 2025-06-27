@@ -74,7 +74,6 @@ intel-gpu-tools
 intel-ucode
 inxi
 irssi
-iw-git
 jfsutils
 kitty-git
 kvantum
@@ -99,7 +98,6 @@ linux-firmware-liquidio
 linux-firmware-marvell
 linux-firmware-mellanox
 linux-firmware-nfp
-linux-firmware-nvidia
 linux-firmware-other
 linux-firmware-qlogic
 linux-firmware-realtek
@@ -266,6 +264,7 @@ xfce4-xkb-plugin
 xfce-config
 xfconf
 xfdesktop
+xfsprogs
 xfwm4-themes
 xl2tpd
 xorg-apps

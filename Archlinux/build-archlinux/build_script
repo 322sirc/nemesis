@@ -23,8 +23,6 @@ cd "$BUILD_DIR"
 echo "Injecting custom scripts into ISO..."
 mkdir airootfs/root/Data
 rsync -a "$CUSTOM_DATA_SRC"/ airootfs/root/Data/
-chmod -R 777 airootfs/root/Data
-
 
 # Inject cow_spacesize=10G into EFI boot entry
 echo "Modifying EFI boot entry to add cow_spacesize=10G..."
