@@ -1,0 +1,6 @@
+[Nemo Action]
+Name=Open New Window
+Comment=Open the folder containing this file in a new window
+Exec=nemo --tabs %F
+Selection=any
+Extensions=any;

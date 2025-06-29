@@ -30,6 +30,7 @@ dialog
 dmenu
 dmraid
 dnsmasq
+dock
 edk2-shell
 efibootmgr
 espeakup
@@ -157,6 +158,7 @@ partimage
 paru-bin
 pavucontrol
 pipewire-support
+plank
 poppler-qt5
 power-profiles-daemon
 pptpclient

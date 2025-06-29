@@ -246,6 +246,7 @@ tree
 ##### desktop
 dmenu
 mugshot
+plank
 xdg-user-dirs-gtk
 xfburn
 xfce4-appfinder

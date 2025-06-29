@@ -1,0 +1,8 @@
+[Nemo Action]
+Active=true
+Name=Open in Meld
+Comment=Compare %F in Meld
+Exec=meld %F
+Icon-Name=meld
+Selection=any
+Extensions=any;

@@ -78,11 +78,16 @@ if id "$USER_NAME" &>/dev/null; then
         sudo cp -a /etc/skel/. "/root/"
         sudo rm "$USER_HOME/.bashrc"
         sudo mv "$USER_HOME/.bashrc_profile" "$USER_HOME/.bashrc"
+        sudo chown -R "$USER_NAME:$USER_NAME" "$USER_HOME"
+        dconf load /org/gnome/terminal/ < "$USER_HOME/gnome_terminal_settings.txt"
+
         sudo rm /root/.bashrc
         sudo mv /root/.bashrc_profile /root/.bashrc
         sudo rm /etc/environment
         sudo mv /etc/environment_profile /etc/environment
-        sudo chown -R "$USER_NAME:$USER_NAME" "$USER_HOME"
+        sudo dconf load /org/gnome/terminal/ < /root/gnome_terminal_settings.txt
+        
+
         echo "✅ Custom skel applied to $USER_NAME"
     else
         echo "⚠️ User $USER_NAME exists but $USER_HOME does not. Skipping skel copy."
@@ -118,6 +123,11 @@ virt=$(systemd-detect-virt || echo "none")
 if [[ "$virt" != "none" ]]; then
     echo "[*] VM detected — installing guest tools..."
     sudo pacman -S --noconfirm --needed virtualbox-guest-utils
+fi
+
+echo "Disabling 'debug' in makepkg.conf options..."
+if grep -q 'OPTIONS=.*\bdebug\b' /etc/makepkg.conf && ! grep -q 'OPTIONS=.*!debug' /etc/makepkg.conf; then
+    sudo sed -i -E 's/(OPTIONS=.*[ (])debug([ )])/\1!debug\2/' /etc/makepkg.conf
 fi
 
 
