@@ -38,7 +38,7 @@ FORMAT_EFI="${FORMAT_EFI,,}"
 
 if [[ "$FORMAT_EFI" == "y" || "$FORMAT_EFI" == "yes" ]]; then
     echo "[+] Formatting EFI partition: $EFI_PART..."
-    mkfs.fat -F32 "$EFI_PART"
+    mkfs.fat -F 32 "$EFI_PART"
 else
     echo "⚠️ Skipping EFI partition format. It will only be mounted."
 fi
