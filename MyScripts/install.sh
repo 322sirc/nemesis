@@ -119,7 +119,7 @@ sleep 2
 # VM detection and guest tools
 virt=$(systemd-detect-virt || echo "none")
 if [[ "$virt" != "none" ]]; then
-    echo "[*] VM detected — installing guest tools..."
+    echo "[*] Virtual Machine detected — installing VirtualBox guest tools..."
     sudo pacman -S --noconfirm --needed virtualbox-guest-utils
 fi
 
