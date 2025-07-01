@@ -1,6 +1,6 @@
 archiso
 b43-fwcutter
-base
+#base
 base-devel
 bind
 darkhttpd
@@ -28,29 +28,26 @@ lftp
 libfido2
 linux
 linux-headers
-linux-atm
+aic94xx-firmware
+ast-firmware
 broadcom-wl-dkms
-linux-firmware-broadcom
-linux-firmware-intel
 linux-firmware-liquidio
 linux-firmware-marvell
 linux-firmware-mellanox
-linux-firmware-nfp
-linux-firmware-other
 linux-firmware-qlogic
-linux-firmware-realtek
 linux-firmware-whence
 upd72020x-fw
-livecd-sounds
+wd719x-firmware
+#livecd-sounds
 lsscsi
 #lynx
 man-db
 man-pages
 mc
 memtest86+
-mkinitcpio-archiso
-mkinitcpio-nfs-utils
-nano
+#mkinitcpio-archiso
+#mkinitcpio-nfs-utils
+#nano
 nfs-utils
 nmap
 nvme-cli
@@ -61,8 +58,9 @@ openvpn
 partclone
 partimage
 pptpclient
-reflector
+#reflector
 rp-pppoe
+rsync
 rxvt-unicode-terminfo
 screen
 sdparm
@@ -89,6 +87,7 @@ zsh
 ###archiso-extra
 dialog
 logrotate
+lshw
 ntp
 wget
 
@@ -124,7 +123,6 @@ bashtop
 dconf-editor
 thermald
 pacman-contrib
-parole
 lvm2
 mtools
 nano-syntax-highlighting
@@ -183,6 +181,7 @@ xf86-input-void
 xf86-input-wacom
 xf86-video-fbdev
 xf86-video-qxl
+libwacom
 
 mesa-utils
 intel-gpu-tools
@@ -214,10 +213,6 @@ pavucontrol
 v4l-utils-git
 
 #driver for virtualbox
-#systemctl enable vboxservice
-#systemctl start vboxservice
-#to have fullscreen
-
 #xf86-input-vmmouse
 
 
@@ -248,7 +243,6 @@ dmenu
 mugshot
 plank
 xdg-user-dirs-gtk
-xfburn
 xfce4-appfinder
 xfce4-artwork
 xfce4-battery-plugin
@@ -261,7 +255,6 @@ xfce4-diskperf-plugin
 xfce4-eyes-plugin
 xfce4-fsguard-plugin
 xfce4-genmon-plugin
-xfce4-mailwatch-plugin
 xfce4-mount-plugin
 xfce4-mpc-plugin
 xfce4-netload-plugin
@@ -297,7 +290,6 @@ xfce-config
 ###applications
 alacritty
 audacious
-dmenu
 feh
 firefox
 galculator
@@ -328,7 +320,6 @@ vlc
 otf-font-awesome-4
 otf-helvetica-neue-lt-std
 otf-helvetica-now
-noto-fonts
 nerd-fonts-hack
 nerd-fonts-lekton
 ttf-bitstream-vera
@@ -371,7 +362,7 @@ gestures
 gnome-terminal-transparency
 intel-compute-runtime-bin
 kitty-git
-libwacom-surface
+#libwacom-surface
 nemo-git
 nemo-fileroller-git
 neofetch
@@ -383,5 +374,5 @@ rate-mirrors-bin
 sublime-text-4
 spotify-adblock-git
 stacer-git
-surface-control-bin
+#surface-control-bin
 thecalculator

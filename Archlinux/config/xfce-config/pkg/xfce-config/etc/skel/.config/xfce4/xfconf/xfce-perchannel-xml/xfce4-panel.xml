@@ -65,6 +65,9 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="wi-fi network connection “smartrg-c567-5g” active: smartrg-c567-5g (56%)"/>
+        <value type="string" value="wi-fi network connection “smartrg-c567-5g” active: smartrg-c567-5g (57%)"/>
+        <value type="string" value="wi-fi network connection “crisval_6g” active: crisval_6g (56%)"/>
         <value type="string" value="no network connection"/>
         <value type="string" value="wi-fi network connection “bell879” active: bell879 (68%)"/>
         <value type="string" value="clipman"/>

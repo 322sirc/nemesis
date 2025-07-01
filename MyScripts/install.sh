@@ -79,14 +79,12 @@ if id "$USER_NAME" &>/dev/null; then
         sudo rm "$USER_HOME/.bashrc"
         sudo mv "$USER_HOME/.bashrc_profile" "$USER_HOME/.bashrc"
         sudo chown -R "$USER_NAME:$USER_NAME" "$USER_HOME"
-        dconf load /org/gnome/terminal/ < "$USER_HOME/gnome_terminal_settings.txt"
-
+       
         sudo rm /root/.bashrc
         sudo mv /root/.bashrc_profile /root/.bashrc
         sudo rm /etc/environment
         sudo mv /etc/environment_profile /etc/environment
-        sudo dconf load /org/gnome/terminal/ < /root/gnome_terminal_settings.txt
-        
+                
 
         echo "✅ Custom skel applied to $USER_NAME"
     else

@@ -1,8 +1,8 @@
 [Nemo Action]
 Active=true
-Name=Open in Meld
+Name=Meld
 Comment=Compare %F in Meld
 Exec=meld %F
-Icon-Name=meld
+Icon-Name=org.gnome.Meld
 Selection=any
 Extensions=any;

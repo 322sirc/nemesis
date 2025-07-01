@@ -1,0 +1,8 @@
+[Nemo Action]
+
+ Name=Terminal
+ Comment=Open the 'Gnome-terminal' terminal in the selected folder
+ Exec=gnome-terminal --working-directory="%F"
+ Icon-Name=utilities-terminal
+ Selection=any
+ Extensions=dir;

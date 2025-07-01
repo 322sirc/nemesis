@@ -52,7 +52,7 @@ mount "$EFI_PART" "$MOUNT_ROOT/boot/efi"
 
 ### === BASE INSTALL === ###
 echo "[+] Installing base system..."
-pacstrap -K "$MOUNT_ROOT" base linux linux-headers reflector linux-firmware sudo grub efibootmgr nano iwd networkmanager --noconfirm
+pacstrap -K "$MOUNT_ROOT" base reflector linux linux-headers linux-firmware-intel sudo grub efibootmgr nano iwd networkmanager --noconfirm
 
 ### === FSTAB === ###
 echo "[+] Generating fstab..."

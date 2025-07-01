@@ -1,8 +1,0 @@
-[Nemo Action]
-
- Name=Ptyxis
- Comment=Open the 'Ptyxis' terminal in the selected folder
- Exec=ptyxis -d
- Icon-Name=utilities-terminal
- Selection=any
- Extensions=dir;

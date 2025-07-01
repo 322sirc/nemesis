@@ -3,12 +3,12 @@
 pkgname = xfce-config
 pkgbase = XFCE-config
 xdata = pkgtype=pkg
-pkgver = 25.06-8
+pkgver = 25.06-9
 pkgdesc = XFCE configuration for custom Arch install ISO
 url = 
-builddate = 1751154782
+builddate = 1751304871
 packager = Unknown Packager
-size = 2031264
+size = 2033610
 arch = any
 license = custom
 conflict = plasma-config
