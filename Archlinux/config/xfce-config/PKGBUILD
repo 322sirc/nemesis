@@ -1,14 +1,14 @@
 pkgname=xfce-config
 pkgbase=XFCE-config
-pkgver=25.06
-pkgrel=9
+pkgver=25.07
+pkgrel=1
 pkgdesc="XFCE configuration for custom Arch install ISO"
 arch=('any')
 license=('custom')
 conflicts=('plasma-config' 'hyprland-config')
 provides=("${pkgname}")
 source=("${pkgbase}.tar.gz")
-sha256sums=('b67399e4337b21463ad734d30b6af18ff0590993e06c1b330ae74c2536ea2b1b')
+sha256sums=('e6a9d8e00103f208c91da462d2d9931515f3634a1c3fb4d0efa0ecbb44d5f78d')
 
 package() {
     local dest="${srcdir}/${pkgbase}"

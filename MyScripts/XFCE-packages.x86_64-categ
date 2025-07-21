@@ -111,7 +111,8 @@ xterm
 #######################################################
 ###      PACKAGES THAT STAY AFTER INSTALLATION      ###
 #######################################################
-
+ananicy-cpp
+cachyos-ananicy-rules
 bash-completion
 os-prober
 dex
@@ -335,7 +336,7 @@ ttf-liberation
 #gtk
 
 #icons
-aretha-dark-icons-theme
+aretha-dark-icons-theme-mod-git
 fluent-icon-theme-red-mod-git
 fluent-icon-theme-standard-mod-git
 

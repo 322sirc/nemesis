@@ -17,7 +17,7 @@ echo "[+] Preparing partitions..."
 
 # Prompt: root filesystem format
 read -rp "❓ Format root partition ($ROOT_PART) as ext4 or xfs? [ext4/xfs]: " ROOT_FS
-ROOT_FS="${ROOT_FS,,}"  # to lowercase
+ROOT_FS="${ROOT_FS,,}"
 
 if [[ "$ROOT_FS" != "ext4" && "$ROOT_FS" != "xfs" ]]; then
     echo "❌ Invalid choice: $ROOT_FS. Must be ext4 or xfs. Aborting."

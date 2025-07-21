@@ -34,8 +34,8 @@
         <value type="int" value="9"/>
         <value type="int" value="12"/>
         <value type="int" value="13"/>
-        <value type="int" value="29"/>
         <value type="int" value="38"/>
+        <value type="int" value="7"/>
       </property>
       <property name="enable-struts" type="bool" value="true"/>
       <property name="leave-opacity" type="uint" value="72"/>
@@ -65,6 +65,14 @@
     <property name="plugin-6" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
       <property name="known-legacy-items" type="array">
+        <value type="string" value="wi-fi network connection “smartrg-c567-5g” active: smartrg-c567-5g (59%)"/>
+        <value type="string" value="wi-fi network connection “smartrg-c567-5g” active: smartrg-c567-5g (58%)"/>
+        <value type="string" value="wi-fi network connection “smartrg-c567-5g” active: smartrg-c567-5g (67%)"/>
+        <value type="string" value="wi-fi network connection “smartrg-c567-5g” active: smartrg-c567-5g (65%)"/>
+        <value type="string" value="wi-fi network connection “smartrg-c567-5g” active: smartrg-c567-5g (66%)"/>
+        <value type="string" value="wi-fi network connection “smartrg-c567-5g” active: smartrg-c567-5g (60%)"/>
+        <value type="string" value="wi-fi network connection “smartrg-c567-5g” active: smartrg-c567-5g (63%)"/>
+        <value type="string" value="wi-fi network connection “smartrg-c567-5g” active: smartrg-c567-5g (61%)"/>
         <value type="string" value="wi-fi network connection “smartrg-c567-5g” active: smartrg-c567-5g (56%)"/>
         <value type="string" value="wi-fi network connection “smartrg-c567-5g” active: smartrg-c567-5g (57%)"/>
         <value type="string" value="wi-fi network connection “crisval_6g” active: crisval_6g (56%)"/>
@@ -97,6 +105,7 @@
         <value type="string" value=""/>
       </property>
       <property name="known-items" type="array">
+        <value type="string" value="tao application"/>
         <value type="string" value="chrome_status_icon_1"/>
         <value type="string" value="blueman"/>
         <value type="string" value="nm-applet"/>
@@ -149,24 +158,6 @@
     <property name="plugin-28" type="string" value="applicationsmenu">
       <property name="button-icon" type="string" value="start-here-archlinux"/>
     </property>
-    <property name="plugin-29" type="string" value="actions">
-      <property name="items" type="array">
-        <value type="string" value="+lock-screen"/>
-        <value type="string" value="-switch-user"/>
-        <value type="string" value="+separator"/>
-        <value type="string" value="+suspend"/>
-        <value type="string" value="-hibernate"/>
-        <value type="string" value="-hybrid-sleep"/>
-        <value type="string" value="-separator"/>
-        <value type="string" value="+shutdown"/>
-        <value type="string" value="+restart"/>
-        <value type="string" value="-separator"/>
-        <value type="string" value="-logout"/>
-        <value type="string" value="+logout-dialog"/>
-      </property>
-      <property name="button-title" type="uint" value="1"/>
-      <property name="appearance" type="uint" value="1"/>
-    </property>
     <property name="plugin-34" type="string" value="fsguard"/>
     <property name="plugin-35" type="string" value="netload"/>
     <property name="plugin-37" type="string" value="weather">
@@ -213,6 +204,11 @@
     <property name="notes" type="empty">
       <property name="global" type="empty">
         <property name="version" type="string" value="1.12.0"/>
+      </property>
+    </property>
+    <property name="plugin-7" type="string" value="launcher">
+      <property name="items" type="array">
+        <value type="string" value="17513909261.desktop"/>
       </property>
     </property>
   </property>

@@ -26,7 +26,7 @@ fi
 
 # Install core kernel packages first
 echo "[*] Installing core kernel packages..."
-sudo pacman -S --noconfirm --needed linux linux-headers linux-firmware mkinitcpio
+sudo pacman -S --noconfirm --needed linux linux-headers linux-firmware-intel mkinitcpio
 
 # Detect and install CPU microcode
 echo "[*] Detecting CPU microcode..."
@@ -97,7 +97,7 @@ fi
 
 # Enable essential services
 echo "[*] Enabling essential services..."
-sudo systemctl enable sddm power-profiles-daemon bluetooth NetworkManager
+sudo systemctl enable sddm power-profiles-daemon bluetooth NetworkManager ananicy-cpp.service
 
 
 # Configure GRUB

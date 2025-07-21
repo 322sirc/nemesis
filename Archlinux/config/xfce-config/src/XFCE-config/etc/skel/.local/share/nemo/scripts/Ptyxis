@@ -1,0 +1,12 @@
+#!/usr/bin/env fish
+
+# Get target path: use first argument if provided, else fallback to current directory
+set folder (if test (count $argv) -ge 1; echo $argv[1]; else; echo $PWD; end)
+
+# Only proceed if folder is valid
+if test -z "$folder"
+    exit 0
+end
+
+# Launch Ptyxis in that folder
+ptyxis -- fish -ic "cd \"$folder\"; exec fish"

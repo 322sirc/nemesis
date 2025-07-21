@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Kernel parameters to apply in GRUB_CMDLINE_LINUX_DEFAULT
-KERNEL_PARAMS='loglevel=7 acpi_osi=! acpi_osi='\''Windows 2020'\'' rd.udev.log_priority=3 vt.global_cursor_default=0 mitigations=off nowatchdog nvme_load=yes ipv6.disable_ipv6=1 ibt=off psi=1'
+KERNEL_PARAMS="add_efi_memmap loglevel=7 acpi_osi=Linux ideapad_laptop.allow_unsupported=1 rd.udev.log_priority=3 page_alloc.shuffle=1 threadirqs split_lock_detect=off pci=pcie_bus_perf vt.global_cursor_default=0 mitigations=off nowatchdog nvme_load=yes ipv6.disable_ipv6=1 ibt=off psi=1"
 # Grub2 Theme
 ROOT_UID=0
 THEME_DIR="/usr/share/grub/themes"
