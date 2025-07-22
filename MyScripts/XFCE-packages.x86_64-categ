@@ -170,6 +170,7 @@ power-profiles-daemon
 blueberry
 bluez-utils
 bluez-alsa-git
+bluez-hid2hci
 
 
 
@@ -231,8 +232,11 @@ poppler-qt5
 yay-bin
 paru-bin
 inxi
+ark
+rar
 unace
 unrar
+7zip
 zip
 unzip
 tree
@@ -291,6 +295,7 @@ xfce-config
 ###applications
 alacritty
 audacious
+audacious-plugins
 feh
 firefox
 galculator
@@ -329,6 +334,7 @@ ttf-droid
 ttf-hack
 ttf-inconsolata
 ttf-liberation
+ttf-space-mono-nerd
 
 
 
@@ -336,7 +342,7 @@ ttf-liberation
 #gtk
 
 #icons
-aretha-dark-icons-theme-mod-git
+aretha-dark-icons-theme-mod-pling
 fluent-icon-theme-red-mod-git
 fluent-icon-theme-standard-mod-git
 
@@ -355,7 +361,7 @@ sddm-catppuccin-git
 labwc
 
 
-#apps-personal-repo
+#Apps-personal-repo
 autofs
 fastfetch-git
 flameshot-git
